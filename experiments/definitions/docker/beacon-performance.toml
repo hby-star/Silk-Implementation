@@ -1,0 +1,121 @@
+schema_version = 1
+experiment_id = "beacon-performance"
+description = "Local Docker beacon throughput, bandwidth per output, and phase timing"
+seed_base = 1
+
+[execution]
+driver = "distributed"
+executors = ["docker"]
+build_profile = "release"
+
+[smoke]
+sample_role = "smoke"
+n = 16
+t = 5
+batch_size = 2
+epochs = 2
+completion_policy = "all-participants-durable"
+
+[matrix]
+status = "ready"
+implementations = ["silk-beacon", "rondo-beacon", "spurt-beacon"]
+executors = ["docker"]
+warmup_runs = 0
+measured_runs = 1
+outputs_per_run = 200
+dimensions = [
+  "implementation",
+  "n",
+  "t",
+  "batch_size",
+  "epochs",
+  "executor",
+  "network_scenario",
+  "resource_profile",
+  "seed",
+  "completion_policy",
+]
+
+[[matrix.cells]]
+n = 4
+t = 1
+batch_size = 2
+
+[[matrix.cells]]
+n = 4
+t = 1
+batch_size = 10
+
+[[matrix.cells]]
+n = 4
+t = 1
+batch_size = 50
+
+[[matrix.cells]]
+n = 7
+t = 2
+batch_size = 2
+
+[[matrix.cells]]
+n = 7
+t = 2
+batch_size = 10
+
+[[matrix.cells]]
+n = 7
+t = 2
+batch_size = 50
+
+[[matrix.cells]]
+n = 16
+t = 5
+batch_size = 2
+
+[[matrix.cells]]
+n = 16
+t = 5
+batch_size = 10
+
+[[matrix.cells]]
+n = 16
+t = 5
+batch_size = 50
+
+[matrix.network]
+profile = "docker-netem-uniform-v1"
+bandwidth_mbps = 1000
+delay_distribution = "uniform"
+delay_min_ms = 10
+delay_max_ms = 30
+loss_percent = 0.0
+reorder_percent = 0.0
+duplicate_percent = 0.0
+seed_policy = "run-seed-plus-node-id-v1"
+
+[matrix.resources]
+profile = "docker-per-node-v1"
+cpu_cores_per_node = 1.0
+memory_mib_per_node = 2048
+one_container_per_node = true
+
+[matrix.isolation]
+policy = "strict-between-runs-v1"
+cleanup_before_run = true
+cleanup_after_run = true
+verify_terminated = true
+scope = "experiment-labelled-containers-and-networks"
+
+[metrics]
+primary = [
+  "throughput_outputs_per_second",
+  "wire_bytes_per_output",
+  "wire_kib_per_output",
+  "wire_mib_per_output",
+  "commitment_wall_ns",
+  "agreement_wall_ns",
+  "reconstruction_wall_ns",
+]
+separate_phases = ["quorum_release", "framework_overhead"]
+per_node_log = true
+node_log_format = "jsonl"
+node_result_format = "csv"

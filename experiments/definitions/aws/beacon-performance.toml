@@ -1,0 +1,109 @@
+schema_version = 1
+experiment_id = "beacon-performance"
+description = "Silk, Rondo, and Spurt at n=7,16,31,61,91,121; one native process per t3a.medium over the real WAN"
+seed_base = 1
+
+[execution]
+driver = "distributed"
+executors = ["remote-aws"]
+build_profile = "release"
+
+[smoke]
+sample_role = "smoke"
+n = 4
+t = 1
+batch_size = 2
+epochs = 1
+completion_policy = "all-participants-durable"
+
+[matrix]
+status = "ready"
+implementations = ["silk-beacon", "rondo-beacon", "spurt-beacon"]
+executors = ["remote-aws"]
+warmup_runs = 0
+measured_runs = 3
+outputs_per_run = 400
+dimensions = [
+  "implementation",
+  "n",
+  "t",
+  "batch_size",
+  "epochs",
+  "executor",
+  "network_scenario",
+  "placement",
+  "resource_profile",
+  "seed",
+  "completion_policy",
+]
+
+[[matrix.cells]]
+n = 7
+t = 2
+batch_size = 50
+
+[[matrix.cells]]
+n = 16
+t = 5
+batch_size = 50
+
+[[matrix.cells]]
+n = 31
+t = 10
+batch_size = 50
+
+[[matrix.cells]]
+n = 61
+t = 20
+batch_size = 50
+
+[[matrix.cells]]
+n = 91
+t = 30
+batch_size = 50
+
+[[matrix.cells]]
+n = 121
+t = 40
+batch_size = 50
+
+[matrix.network]
+profile = "aws-native-wan-v1"
+# Schema-required metadata only; remote-aws applies no traffic shaping.
+# This is neither an observed link rate nor a t3a.medium bandwidth guarantee.
+bandwidth_mbps = 10000
+delay_distribution = "uniform"
+delay_min_ms = 0
+delay_max_ms = 0
+loss_percent = 0.0
+reorder_percent = 0.0
+duplicate_percent = 0.0
+seed_policy = "aws-native-network-v1"
+
+[matrix.resources]
+profile = "aws-one-instance-per-node-v1"
+cpu_cores_per_node = 2.0
+memory_mib_per_node = 4096
+one_container_per_node = false
+
+[matrix.isolation]
+policy = "strict-between-runs-v1"
+cleanup_before_run = true
+cleanup_after_run = true
+verify_terminated = true
+scope = "run-scoped-native-processes-and-directories"
+
+[metrics]
+primary = [
+  "throughput_outputs_per_second",
+  "wire_bytes_per_output",
+  "wire_kib_per_output",
+  "wire_mib_per_output",
+  "commitment_wall_ns",
+  "agreement_wall_ns",
+  "reconstruction_wall_ns",
+]
+separate_phases = ["quorum_release", "framework_overhead"]
+per_node_log = true
+node_log_format = "jsonl"
+node_result_format = "csv"

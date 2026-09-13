@@ -1,0 +1,19 @@
+key:
+  name: silk-experiments
+  path: ~/.ssh/silk-experiments.pem
+port:
+  p2p: 9000
+# Reserve an existing spare for SSH management if direct access is insufficient.
+ssh_gateway_fallback: true
+instances:
+  type: t3a.medium
+  volume_gb: 24
+  regions:
+    - ca-central-1
+    - eu-west-1
+    - us-west-1
+    - us-east-1
+    - us-west-2
+    - us-east-2
+    - ap-southeast-1
+    - ap-northeast-1

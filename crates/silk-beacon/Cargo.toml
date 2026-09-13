@@ -1,0 +1,15 @@
+[package]
+name = "silk-beacon"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+crypto-primitives = { path = "../crypto-primitives" }
+curve25519-dalek = { workspace = true }
+protocol-support = { path = "../support/protocol" }
+rand = { workspace = true }
+rand_chacha = { workspace = true }
+reed-solomon-simd = "3.1"
+serde = { workspace = true }
+silk-bavss-po = { path = "../silk-bavss-po" }
+thiserror = { workspace = true }

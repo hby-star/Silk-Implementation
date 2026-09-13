@@ -1,0 +1,20 @@
+[package]
+name = "crypto-primitives"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = ["native-mldsa"]
+native-mldsa = ["mldsa-native65/native"]
+
+[dependencies]
+blake3 = { workspace = true }
+blst = { workspace = true }
+curve25519-dalek = { workspace = true }
+hmac = { workspace = true }
+ml-dsa = { workspace = true }
+mldsa-native65 = { path = "mldsa-native65", default-features = false }
+rand = { workspace = true }
+serde = { workspace = true }
+sha2 = { workspace = true }
+thiserror = { workspace = true }

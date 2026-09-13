@@ -1,0 +1,13 @@
+[package]
+name = "rondo-bavss-po"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+protocol-support = { path = "../support/protocol" }
+crypto-primitives = { path = "../crypto-primitives" }
+curve25519-dalek = { workspace = true }
+rand = { workspace = true }
+rand_chacha = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }

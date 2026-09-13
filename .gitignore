@@ -1,0 +1,17 @@
+**/target/
+/output/
+/artifacts/
+**/.venv/
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+**/.ruff_cache/
+**/*.egg-info/
+.ssh
+.env
+.env.*
+*.pem
+*.key
+/experiments/.state/
+/experiments/definitions/aws/*.yaml
+!/experiments/definitions/aws/*.example.yaml

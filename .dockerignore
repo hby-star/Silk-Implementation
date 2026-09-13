@@ -1,0 +1,13 @@
+target
+output
+.ssh
+experiments/.venv
+experiments/.state
+experiments/results/raw
+experiments/results/processed
+experiments/results/figures
+experiments/**/__pycache__
+experiments/*.egg-info
+experiments/definitions/aws/*.yaml
+bench-ref
+**/*.pyc

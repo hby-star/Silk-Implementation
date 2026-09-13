@@ -1,0 +1,23 @@
+[package]
+name = "beacon-node"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+cpu-time = { workspace = true }
+crypto-primitives = { path = "../crypto-primitives" }
+curve25519-dalek = { workspace = true }
+hex = { workspace = true }
+mio = { version = "1", features = ["os-poll", "net"] }
+protocol-support = { path = "../support/protocol" }
+rand = { workspace = true }
+rand_chacha = { workspace = true }
+rayon = { workspace = true }
+rondo-bavss-po = { path = "../rondo-bavss-po" }
+rondo-beacon = { path = "../rondo-beacon" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+silk-bavss-po = { path = "../silk-bavss-po" }
+silk-beacon = { path = "../silk-beacon" }
+spurt-beacon = { path = "../spurt-beacon" }
+thiserror = { workspace = true }

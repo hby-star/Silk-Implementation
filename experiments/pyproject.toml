@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "silk-experiments"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+  "boto3>=1.43.89",
+  "fabric>=3.2,<4",
+  "matplotlib>=3.9,<4",
+  "numpy>=2,<3",
+  "PyYAML>=6,<7",
+  "tomli>=2,<3; python_version < '3.11'",
+]
+
+[project.scripts]
+silk-exp = "silk_experiments.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["silk_experiments*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+packages = ["silk_experiments"]
+mypy_path = "src"
+
+[[tool.mypy.overrides]]
+module = ["fabric", "tomli"]
+ignore_missing_imports = true

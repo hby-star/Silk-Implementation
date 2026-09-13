@@ -1,0 +1,13 @@
+[package]
+name = "silk-bavss-po"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+crypto-primitives = { path = "../crypto-primitives" }
+curve25519-dalek = { workspace = true }
+protocol-support = { path = "../support/protocol" }
+postcard = { workspace = true }
+rand = { workspace = true }
+rand_chacha = { workspace = true }
+serde = { workspace = true }

@@ -1,0 +1,37 @@
+schema_version: 1
+p2p_port: 9000
+hosts:
+  # address is used for SSH. endpoint_address is advertised to the other
+  # replicas and must be reachable on TCP/9000 from every selected instance.
+  - alias: node-0000
+    address: 192.0.2.10
+    endpoint_address: 192.0.2.10
+    user: ubuntu
+    region: us-east-1
+    roles: [replica]
+    instance_id: i-00000000000000001
+    data_dir: /home/ubuntu/silk-experiments
+  - alias: node-0001
+    address: 192.0.2.11
+    endpoint_address: 192.0.2.11
+    user: ubuntu
+    region: us-west-2
+    roles: [replica]
+    instance_id: i-00000000000000002
+    data_dir: /home/ubuntu/silk-experiments
+  - alias: node-0002
+    address: 192.0.2.12
+    endpoint_address: 192.0.2.12
+    user: ubuntu
+    region: eu-west-1
+    roles: [replica]
+    instance_id: i-00000000000000003
+    data_dir: /home/ubuntu/silk-experiments
+  - alias: node-0003
+    address: 192.0.2.13
+    endpoint_address: 192.0.2.13
+    user: ubuntu
+    region: ap-southeast-1
+    roles: [replica]
+    instance_id: i-00000000000000004
+    data_dir: /home/ubuntu/silk-experiments

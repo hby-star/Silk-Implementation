@@ -1,0 +1,19 @@
+[package]
+name = "experiment-records"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+crypto-primitives = { path = "../../crypto-primitives" }
+csv = { workspace = true }
+hex = { workspace = true }
+hostname = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+beacon-node = { path = "../../beacon-node" }
+toml = { workspace = true }
+silk-bavss-po = { path = "../../silk-bavss-po" }
+silk-beacon = { path = "../../silk-beacon" }
+rondo-bavss-po = { path = "../../rondo-bavss-po" }
+rondo-beacon = { path = "../../rondo-beacon" }

@@ -1,0 +1,15 @@
+[package]
+name = "mldsa-native65"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[features]
+default = ["native"]
+native = []
+
+[dependencies]
+zeroize = "1.9"
+
+[build-dependencies]
+cc = "1.2"
